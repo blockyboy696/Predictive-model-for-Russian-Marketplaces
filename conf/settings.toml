@@ -1,0 +1,8 @@
+[PATH]
+CATALOGUE_PATH = 'catalogue/wb_catalogue.json'
+
+[VARIABLES]
+TARGET = 'sales'
+
+[URL]
+
