@@ -6760,36 +6760,12 @@
         "query": "cat=15693",
         "childs": [
           {
-            "id": 59105,
+            "id": 130772,
             "parent": 15693,
-            "name": "PlayStation",
-            "url": "/catalog/elektronika/razvlecheniya-i-gadzhety/igrovye-konsoli/playstation",
+            "name": "Игровые консоли",
+            "url": "/catalog/elektronika/razvlecheniya-i-gadzhety/igrovye-konsoli/igrovye-konsoli",
             "shard": "electronic19",
-            "query": "cat=59105"
-          },
-          {
-            "id": 59108,
-            "parent": 15693,
-            "name": "Xbox",
-            "url": "/catalog/elektronika/razvlecheniya-i-gadzhety/igrovye-konsoli-i-igry/xbox",
-            "shard": "electronic19",
-            "query": "cat=59108"
-          },
-          {
-            "id": 59114,
-            "parent": 15693,
-            "name": "Nintendo",
-            "url": "/catalog/elektronika/razvlecheniya-i-gadzhety/igrovye-konsoli-i-igry/nintendo",
-            "shard": "electronic19",
-            "query": "cat=59114"
-          },
-          {
-            "id": 59103,
-            "parent": 15693,
-            "name": "Приставки 8bit и 16bit",
-            "url": "/catalog/elektronika/razvlecheniya-i-gadzhety/igrovye-konsoli/pristavki-8bit-i-16bit",
-            "shard": "electronic19",
-            "query": "cat=59103"
+            "query": "cat=130772"
           },
           {
             "id": 61808,
@@ -6824,7 +6800,8 @@
             "shard": "electronic19",
             "query": "cat=10491"
           }
-        ]
+        ],
+        "isDenyLink": true
       },
       {
         "id": 59132,
@@ -10464,6 +10441,14 @@
             "query": "cat=904"
           },
           {
+            "id": 130771,
+            "parent": 870,
+            "name": "Металлоискатели",
+            "url": "/catalog/sport/vidy-sporta/turizm-kemping/metalloiskateli",
+            "shard": "sport26",
+            "query": "cat=130771"
+          },
+          {
             "id": 875,
             "parent": 870,
             "name": "Обувь",
@@ -12255,6 +12240,14 @@
             "url": "/catalog/avtotovary/masla-i-zhidkosti/gidravlicheskie-zhidkosti-i-masla",
             "shard": "autoproduct13",
             "query": "cat=130705"
+          },
+          {
+            "id": 130754,
+            "parent": 128640,
+            "name": "Промывочные масла",
+            "url": "/catalog/avtotovary/masla-i-zhidkosti/promyvochnye-masla",
+            "shard": "autoproduct13",
+            "query": "subject=8412"
           },
           {
             "id": 130704,
