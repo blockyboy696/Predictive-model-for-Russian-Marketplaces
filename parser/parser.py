@@ -3,6 +3,7 @@ from tqdm import tqdm
 import pandas as pd
 import requests
 from conf.conf import logging,settings
+from data.preprocessing import get_df_prep
 from util.util import save_data_csv
 import math
 
@@ -185,10 +186,6 @@ def data_cat_pipeline(url):
     print(product_data,cat_data)
     data = product_data.merge(cat_data, on='id')
     data = data.set_index('id')
-    save_data_csv(f'catalogue/{name_category}.csv',data)
-    
+    get_df_prep(data)
     return data
-data_cat_pipeline('https://www.wildberries.ru/catalog/dom/spalnya/dekoratsii-nastennye')
-data_cat_pipeline('https://www.wildberries.ru/catalog/elektronika/avtoelektronika')
-data_cat_pipeline('https://www.wildberries.ru/catalog/knigi-i-kantstovary/kantstovary/chertezhnye-prinadlezhnosti')
 
