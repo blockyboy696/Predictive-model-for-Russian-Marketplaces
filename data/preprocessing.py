@@ -12,17 +12,20 @@ TARGET ='discounted Price'
 
 
 def get_clean_data(df:pd.DataFrame):
+    logging.info('cleaning data')
     try:
         df = df.rename(columns={'barnd':'brand'})
         df = df.drop(['price','discount','id'],axis=1)
         for column in df.columns:
             if df[column].isnull().sum()/len(df) >= 0.15:
              df = df.drop(column,axis=1)
-            return df
+        logging.info('data is cleaned')
+        return df
     except:
         for column in df.columns:
             if df[column].isnull().sum()/len(df) >= 0.15:
                 df = df.drop(column,axis=1)
+        logging.info('data is cleaned')
         return df
 
 
@@ -42,6 +45,7 @@ def get_column_cat(df):
 
 
 def preprocess_num_col(NUMERIC_COLUMNS,df):
+    logging.info('preprocessing numeric columns')
     for column in NUMERIC_COLUMNS:
         df[column] = df[column].apply(lambda value: re.sub('\D', '', str(value)))
         df[column] = df[column].replace('',0)
@@ -54,9 +58,10 @@ def remove_punctuation(sentence: str) -> str:
 
         
 def pipeline(data: pd.DataFrame, categorical_features: list, numeric_features: list)-> pd.DataFrame:
+    
     porter = PorterStemmer()
-
-    #функция принимает данные и список категориальных колонок и преобразует их в числовые колнки
+    logging.info('preprocessing data')
+    
     oe = preprocessing.OrdinalEncoder()
     ss = preprocessing.RobustScaler()
     
@@ -75,11 +80,12 @@ def pipeline(data: pd.DataFrame, categorical_features: list, numeric_features: l
         data[feature] = ss.fit_transform(np.array(data[feature]).reshape((-1, 1)))
         data[feature] = data[feature].replace(np.nan,data[feature].mean())
         
+    logging.info('preprocessing done')
     return data
 
 
 def get_df_prep(df):
-    print('Enter df name')
+    logging.info('Enter df name')
     name = input()
     df = get_clean_data(df)
     NUMERIC_COLUMNS,CATEGORICAL_COLUMNS = get_column_cat(df)

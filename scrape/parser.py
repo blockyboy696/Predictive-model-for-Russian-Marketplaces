@@ -179,13 +179,14 @@ def get_features(id_list):
 
 
 def data_cat_pipeline(url):
+    logging.info('scraping started')
     cat_data,name_category = parser(url,0,1000000000)
     cat_data = pd.DataFrame(cat_data)
     id_list = cat_data['id'].values
     product_data = get_features(id_list)
-    print(product_data,cat_data)
     data = product_data.merge(cat_data, on='id')
     data = data.set_index('id')
+    save_data_csv(f'catalogue/{name_category}.csv')
     get_df_prep(data)
     return data
 
