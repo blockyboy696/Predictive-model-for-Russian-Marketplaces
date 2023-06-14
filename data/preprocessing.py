@@ -12,12 +12,18 @@ TARGET ='discounted Price'
 
 
 def get_clean_data(df:pd.DataFrame):
-    df = df.rename(columns={'barnd':'brand'})
-    df = df.drop(['price','discount','id'],axis=1)
-    for column in df.columns:
-        if df[column].isnull().sum()/len(df) >= 0.15:
-            df = df.drop(column,axis=1)
-    return df
+    try:
+        df = df.rename(columns={'barnd':'brand'})
+        df = df.drop(['price','discount','id'],axis=1)
+        for column in df.columns:
+            if df[column].isnull().sum()/len(df) >= 0.15:
+             df = df.drop(column,axis=1)
+            return df
+    except:
+        for column in df.columns:
+            if df[column].isnull().sum()/len(df) >= 0.15:
+                df = df.drop(column,axis=1)
+        return df
 
 
 def get_column_cat(df):

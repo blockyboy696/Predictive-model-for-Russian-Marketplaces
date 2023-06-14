@@ -11,8 +11,11 @@ def get_cat_mat(df,CATEGORICAL_COLUMNS):
     cv = CountVectorizer(min_df=10)
     matrices = []
     for column in CATEGORICAL_COLUMNS:
-        col_t = cv.fit_transform(df[column])
-        matrices.append(col_t)
+        try:
+            col_t = cv.fit_transform(df[column])
+            matrices.append(col_t)
+        except:
+            cat_mat = cat_mat
     cat_mat = hstack(matrices)
     return cat_mat
 
@@ -36,7 +39,7 @@ def get_features(mat,len_pred):
     features, pred = mat[:mat.shape[0]-len_pred],mat[-len_pred]
     return features,pred
 
-def get_split(dir1,dir2,TARGET = 'discounted Price'):
+def get_split(dir1,dir2,TARGET):
     df  = get_data_csv(dir1)
     target = df[TARGET]
     df = df.drop(TARGET,axis=1)
