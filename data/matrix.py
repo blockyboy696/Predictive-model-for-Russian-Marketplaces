@@ -6,6 +6,7 @@ from util.util import get_data_csv
 from data.preprocessing import get_column_cat
 from sklearn.model_selection import train_test_split
 from scipy.sparse import csr_matrix, hstack
+from data.preprocessing import get_column_cat
 
 def get_cat_mat(df,CATEGORICAL_COLUMNS):
     cv = CountVectorizer(min_df=10)
@@ -39,16 +40,20 @@ def get_features(mat,len_pred):
     features, pred = mat[:mat.shape[0]-len_pred],mat[-len_pred]
     return features,pred
 
-def get_split(dir1,dir2,TARGET):
-    df  = get_data_csv(dir1)
+
+#NUMERIC_COLUMNS, CATEGORICAL_COLUMNS
+def get_split(dir,dir2,TARGET = 'dicsounted Price'):
+    df = get_data_csv(dir)
     target = df[TARGET]
     df = df.drop(TARGET,axis=1)
     for_pred = get_data_csv(dir2)
     len_pred = len(for_pred)
     full_df = pd.concat([df,for_pred])
     NUMERIC_COLUMNS, CATEGORICAL_COLUMNS = get_column_cat(full_df)
-    cat_mat = get_cat_mat(df,CATEGORICAL_COLUMNS)
-    desc_mat = get_desc_mat(df)
-    full_mat = get_full_mat(df,cat_mat,desc_mat,NUMERIC_COLUMNS)
+    for column in CATEGORICAL_COLUMNS:
+        full_df[column] = [str(x)for x in full_df[column]]
+    cat_mat = get_cat_mat(full_df,CATEGORICAL_COLUMNS)
+    desc_mat = get_desc_mat(full_df)
+    full_mat = get_full_mat(full_df,cat_mat,desc_mat,NUMERIC_COLUMNS)
     features, pred, = get_features(full_mat,len_pred)
     return features, pred, target

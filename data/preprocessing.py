@@ -37,6 +37,7 @@ def get_column_cat(df):
             NUMERIC_COLUMNS.append(column)
         elif col_input == 'categorical':
             CATEGORICAL_COLUMNS.append(column)
+    print(CATEGORICAL_COLUMNS,CATEGORICAL_COLUMNS)
     return NUMERIC_COLUMNS,CATEGORICAL_COLUMNS
 
 
